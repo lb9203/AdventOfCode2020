@@ -8,10 +8,9 @@ import (
 	"strconv"
 )
 
-
 func main() {
 	//Read input file
-	var file, err = os.Open("day_one/part_two/expense_report.txt")
+	var file, err = os.Open("day_one/expense_report.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,11 +31,11 @@ func main() {
 		expenseReport[lineAsInt] = lineAsInt
 	}
 
-	var answers, exists = numbersWithSum(expenseReport,2020,3)
+	var answers, exists = numbersWithSum(expenseReport, 2020, 3)
 	if exists {
 		var product int = 1
 		for i, value := range answers {
-			fmt.Printf("Answer %d: %d\n",i,value)
+			fmt.Printf("Answer %d: %d\n", i, value)
 			product *= value
 		}
 		fmt.Printf("Product of answers is %d", product)
@@ -45,8 +44,7 @@ func main() {
 	}
 }
 
-
-func numbersWithSum(numbers map[int]int, sum int, numberOfTerms int) ([]int,bool) {
+func numbersWithSum(numbers map[int]int, sum int, numberOfTerms int) ([]int, bool) {
 	if numberOfTerms == 1 {
 		var answer, exists = numbers[sum]
 		return []int{answer}, exists
@@ -57,7 +55,7 @@ func numbersWithSum(numbers map[int]int, sum int, numberOfTerms int) ([]int,bool
 			delete(numbers, key)
 
 			var newNumbers = copyOfMap(numbers)
-			var newSum = sum-key
+			var newSum = sum - key
 
 			var answers, exists = numbersWithSum(newNumbers, newSum, numberOfTerms-1)
 			if exists {
