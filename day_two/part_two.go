@@ -44,14 +44,20 @@ func main() {
 			return
 		}
 
-		count := strings.Count(password, policyLetter)
-
 		password = strings.TrimSpace(password)
 
-		if count <= max && count >= min {
+		one, two := password[min-1], password[max-1]
+
+		var matches = 0
+		if strings.Compare(policyLetter, string(one)) == 0 {
+			matches++
+		}
+		if strings.Compare(policyLetter, string(two)) == 0 {
+			matches++
+		}
+		if matches == 1 {
 			validPasswords++
 		}
-
 	}
 
 	fmt.Printf("Number of valid passwords: %d\n", validPasswords)
