@@ -11,7 +11,7 @@ import (
 
 func main() {
 	//Read input file
-	file, err := os.Open("day_two/passwords.txt")
+	file, err := os.Open("day_2/passwords.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

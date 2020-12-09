@@ -10,7 +10,7 @@ import (
 
 func main() {
 	//Read input file
-	var file, err = os.Open("day_one/expense_report.txt")
+	var file, err = os.Open("day_1/expense_report.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
