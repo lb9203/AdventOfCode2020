@@ -19,7 +19,7 @@ func main() {
 	defer file.Close()
 
 	validPassports := 0
-	curPassport := newPassport2()
+	curPassport := newPassport()
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -27,10 +27,10 @@ func main() {
 
 		if len(text) == 0 {
 
-			if validatePassport2(curPassport) {
+			if validatePassport(curPassport) {
 				validPassports++
 			}
-			curPassport = newPassport2()
+			curPassport = newPassport()
 
 		} else {
 
@@ -44,19 +44,19 @@ func main() {
 	}
 
 	//Validate last passport, because theres no empty line after the last passport (nice input formatting bro)
-	if validatePassport2(curPassport) {
+	if validatePassport(curPassport) {
 		validPassports++
 	}
 
 	fmt.Printf("Valid passports: %d\n", validPassports)
 }
 
-type passport2 struct {
+type passport struct {
 	fields map[string]string
 }
 
-func newPassport2() passport2 {
-	return passport2{map[string]string{
+func newPassport() passport {
+	return passport{map[string]string{
 		"byr": "",
 		"iyr": "",
 		"eyr": "",
@@ -68,7 +68,7 @@ func newPassport2() passport2 {
 	}}
 }
 
-func validatePassport2(p passport2) bool {
+func validatePassport(p passport) bool {
 	for key, value := range p.fields {
 		if key != "cid" && len(value) == 0 {
 			return false
